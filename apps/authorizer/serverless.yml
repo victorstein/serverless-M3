@@ -1,0 +1,23 @@
+service: ${self:custom.lambdaName}-lambda-${self:custom.global.name}
+variablesResolutionMode: 20210326
+projectDir: ../../
+
+plugins: ${self:custom.global.plugins}
+provider: ${self:custom.global.provider}
+
+functions:
+  proxyFunction:
+    name: ${self:custom.lambdaName}
+    handler: ${self:custom.global.function.handler}
+    events: ${self:custom.global.function.events}
+
+custom:
+  lambdaName: authorizer
+  global: ${file(../../global.yml):project}
+  prune:
+    automatic: true
+    number: 2
+    region: ${aws:region}
+  warmup:      
+      - production
+      - staging

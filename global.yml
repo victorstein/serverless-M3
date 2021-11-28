@@ -1,0 +1,22 @@
+project:
+  name: m3
+  plugins:
+    - serverless-prune-plugin
+    - serverless-offline
+    - serverless-plugin-warmup
+  provider:
+    name: aws
+    runtime: nodejs14.x
+    memorySize: 128
+    stage: ${env:NODE_ENV, 'dev'}
+    lambdaHashingVersion: 20201221
+    region: us-west-2
+  function:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
