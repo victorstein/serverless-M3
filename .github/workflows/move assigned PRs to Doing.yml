@@ -11,5 +11,5 @@ jobs:
       - uses: alex-page/github-project-automation-plus@v0.5.1
         with:
           project: 1.0 release
-          column: Doing
+          column: Under Review
           repo-token: ${{ secrets.GH_TOKEN_M3_SERVERLESS }}
